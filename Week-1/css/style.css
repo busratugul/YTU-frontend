@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: sans-serif;
+}
+:root {
+  font-size: 16px;
+}
+
+* {
+  font-size: 1rem;
+}
+
+button {
+  font-size: 1rem;
+}
+
+body {
+  background-color: lightblue;
+  margin: 1rem;
+}
+
+.container {
+  max-width: 200px;
+  margin: 2rem auto;
+}
+
+a {
+  color: inherit;
+}
+
+div#theme-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+
+#buton1 {
+  background-color: lightyellow;
+  color: orange;
+}
+
+#buton2 {
+  background-color: lightgreen;
+  color: gray;
+}
+
+#buton3 {
+  background-color: lightblue;
+  color: black;
+}
+
+#yazi-boyutu {
+  position: fixed;
+  top: 4rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+}
