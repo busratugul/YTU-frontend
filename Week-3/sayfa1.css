@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#root {
+  background-color: lightblue;
+  padding: 1rem;
+}
+
+ul {
+  max-height: 400px;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
+}
+
+li {
+  margin: 0.5rem;
+}
+
+button {
+  display: block;
+  margin-left: auto;
+}
+
+div#ogrenci-bilgi {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  font-size: 200%;
+}
+
+#menu {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+}
