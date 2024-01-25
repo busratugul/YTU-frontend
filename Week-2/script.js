@@ -1,0 +1,1 @@
+const araclar = ["Opel1", "Hyundai", "Mercedes", "TOGG"]
