@@ -1,0 +1,8 @@
+{
+    "ad" : "Hasan",
+    "soyad": "Tokatlı",
+    "puan": 25,
+    "premium": false,
+    "rozetler": ["Havalı Oyuncu😎", "İyi Nşancı🏹"],
+    "iletisim" : { "tel": "0555 555 5555",  "eposta": "bsratugul@gmail.com"}
+}

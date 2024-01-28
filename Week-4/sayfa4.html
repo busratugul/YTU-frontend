@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <title>Sayfa 4</title>
+  </head>
+  <style>
+    #yukleniyor-kutusu{
+        position: fixed;
+        left: 0; right: 0; top: 0; bottom: 0;
+        background-color: #fff;
+        display: grid;
+        place-items: center;
+    }
+  </style>
+  <body>
+    <h1>Uzaydaki İnsanlar</h1>
+    <button id="az-sirala" class="btn btn-outline-success btn-sm">A-Z SIRALA</button>
+    <button id="za-sirala" class="btn btn-outline-success btn-sm">Z-A SIRALA</button>
+    <div class="kutu row gap-3"></div>
+    <div class="container py-5"></div>
+
+    <div id="yukleniyor-kutusu">Veri Yükleniyor...</div>
+
+    <script src="sayfa4.js"></script>
+  </body>
+</html>
+
+<!--tek butonla sıralama ev ödevi-->
