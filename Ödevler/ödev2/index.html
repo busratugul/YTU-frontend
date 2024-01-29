@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ödev 2</title>
+
+    <style>
+      body {
+        min-width: 100vw;
+        min-height: 100vh;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: black;
+      }
+
+      div {
+        background-color: thistle;
+        text-align: center;
+        width: 7rem;
+        height: 2rem;
+        cursor: pointer;
+        margin: 1rem;
+        border-radius: 5px;
+        transition: 0.3s all ease;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      div:hover {
+        opacity: 0.7;
+        transform: scale(0.98);
+      }
+
+      button {
+        padding: 0.5rem;
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header><h1>ÖDEV 2 CEVAPLAR</h1></header>
+    <section style="display: flex">
+      <div>
+        <button onclick="location.href = 'soru1.html'">SORU 1</button>
+      </div>
+
+      <div><button onclick="location.href = 'soru2.html'">SORU 2</button></div>
+      <div><button onclick="location.href = 'soru3.html'">SORU 3</button></div>
+
+      <div><button onclick="location.href = 'soru4.html'">SORU 4</button></div>
+    </section>
+  </body>
+</html>

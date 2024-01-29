@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ÖDEV 3</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      #btn-2 {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+      }
+
+      .gizle {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <!-- onclick="alert('Tıklandı')"  -->
+  <body onmousewheel="alert('tekerlek çevirildi')">
+    <p id="p-1">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem incidunt
+      cumque porro, corporis labore fugiat voluptates totam eius tempora vero?
+    </p>
+    <div
+      id="kutu-1"
+      style="background-color: red; width: 3rem; height: 5rem"
+      onclick="renkDegistir(this)"
+    >
+      hello
+    </div>
+    <button id="btn-1">Tam Ekran</button>
+    <button class="gizle" id="btn-2">X</button>
+    <!-- <script src="donguler.js"></script> -->
+    <!-- <script src="fonksiyonlar.js"></script> -->
+    <!--  <script src="nesneler.js"></script> -->
+    <!-- <script src="diziler.js"></script> -->
+    <!-- <script src="BOM.js"></script> -->
+    <!-- <script src="olaylar.js"></script> -->
+    <!-- <script src="domnodes.js"></script> -->
+    <script src="webApi.js"></script>
+  </body>
+</html>
