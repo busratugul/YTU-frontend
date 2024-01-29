@@ -71,26 +71,26 @@ console.log(ogrencilerDetay) */
 
 //WEEK4
 
-//eğer slice ile birden çok eleman güncellemek istersen virgülden sonra yeni değerleri bir array içinde vermemiz gerekmektedir. ogrenciler.splice(3,2, ["Doruk Akgün", "tarkan"]) slice geriye silinenleri bir array olarak döndürür yakalayabiliriz.
-//orjinal listeyi değiştirmeye muted etmek mutasyona uğratmak denir.filter da orjinal listeyi değiştirmez. Bu zamana kadar yaptıklarımız muteddi.
+//eğer splice ile birden çok eleman güncellemek istersen virgülden sonra yeni değerleri bir array içinde vermemiz gerekmektedir. ogrenciler.splice(3,2, ["Doruk Akgün", "tarkan"]) slice geriye silinenleri bir array olarak döndürür yakalayabiliriz.
+//orjinal listeyi değiştirmeye mutation etmek mutasyona uğratmak denir.filter da orjinal listeyi değiştirmez. Bu zamana kadar yaptıklarımız mutationdu.
 
 //BASİT ARRAY FİLTRELEME
 /* const isimFiltreArray = ogrenciler.filter((eleman) => {
   return eleman.toLowerCase().includes('hasan')
-})
-//tolocallowercase pcnin diline bakarak arama yapar
+}) */
+//tolocallowercase pcnin diline bakarak işlem yapar
 
-console.log(isimFiltreArray)
-console.log(ogrenciler)
+/* console.log(isimFiltreArray)
+console.log(ogrenciler) */
 
 //obje içeren array filtreleme
-const devamsizlikOlmayanOgrenciler = ogrencilerDetay.filter(
+/* const devamsizlikOlmayanOgrenciler = ogrencilerDetay.filter(
   (eleman) => eleman.devamsizlik === 0
 )
-console.log(devamsizlikOlmayanOgrenciler) */
+console.log(devamsizlikOlmayanOgrenciler)
+ */
 
-
-//ARRAY SIRALAMA sort() orjinal diziyi değiştirir. muteddir. Önce dizinin bir kopyasını al
+//ARRAY SIRALAMA sort() orjinal diziyi değiştirir. mutationdir. Önce dizinin bir kopyasını al
 //basit array sıralama
 
 /* ogrenciler.sort()
@@ -103,7 +103,7 @@ console.log(ogrenciler)
 //localeCompare() sıralamasını yaparken açıklamasında yazdığı gibi verilen dilin BCP 47 standardlarına uygun olması gerekir.googlela.Mesela türkçe tr-TR olarak yazılır. Ve bu localeCompareye ikinci parametre olarak bunu verirsek garantiye almış oluruz.
 
 //obje içeren arraylerde sıralama
-ogrencilerDetay.sort((ilkObje,ikinciObje) => ilkObje.ad.localeCompare(ikinciObje.ad, "tr-TR"))
+/* ogrencilerDetay.sort((ilkObje,ikinciObje) => ilkObje.ad.localeCompare(ikinciObje.ad, "tr-TR"))
 console.log(ogrencilerDetay)
 console.log(ogrencilerDetay)
 console.log(ogrenciler)
@@ -113,4 +113,4 @@ console.log(ogrencilerDetay)
 
 const yeni = ogrencilerDetay.sort((ilkObje,ikinciObje) => ilkObje.devamsizlik-ikinciObje.devamsizlik)
 console.log(yeni)
-console.log(ogrencilerDetay)
+console.log(ogrencilerDetay) */

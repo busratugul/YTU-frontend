@@ -1,4 +1,4 @@
-//temel gerekli bileşenler oluşturuluyor
+//EMEL GEREKLİ BİLEŞENLER OLUŞTURULUYOR
 const api_url = 'http://api.open-notify.org/astros.json'
 const gridElemani = document.querySelector('.kutu')
 const azSiralaButonu = document.querySelector('#az-sirala')
@@ -6,9 +6,9 @@ const zaSiralaButonu = document.querySelector('#za-sirala')
 const yukleniyorKutusu = document.querySelector('#yukleniyor-kutusu')
 const uzaydakiKisiler = []
 
-//api  kaynağından gelen veriler çekiliyor
+//API KAYNAĞINDAN VERİLER ÇEKİLİYOR
 fetch(api_url)
-  .then((yanit) => yanit.json()) //javascript objesine ceviriyor. json() diyo ama js yapıyor.
+  .then((yanit) => yanit.json()) //javascript objesine ceviriyor. json() diyo ama aslında js yapıyor.
   .then((veri) => {
     //console.log(veri)
     uzaydakiKisiler.push(...veri.people)
@@ -20,9 +20,9 @@ fetch(api_url)
     yukleniyorKutusu.innerHTML = `<span class="alert alert-danger"> Veriler yüklenirken hata oluştu.Lütfen daha sonra tekrar deneyiniz. </span>`
   })
 
-//kişileri uida gösteren ana fonksiyon
+//KİŞİLERİ UIDA GÖSTEREN ANA FONKSİYON
 function kisileriGoster() {
-  //öncelikle kutu içerisinde değer varsa temizle
+  //öncelikle kutu içerisinde değer varsa temizle ki sıralama yaptığımızda üst üste yığılmasın
   if (uzaydakiKisiler) {
     gridElemani.innerHTML = ''
   }
@@ -31,8 +31,8 @@ function kisileriGoster() {
   })
 }
 
-//kisileri tek tek ekleyen
-//bir html elementinin kendine bir şey eklemek istersek
+//KİŞİLERİ TEK TEK EKLEYEN FONKSİYON
+//bir html elementini konumlandırarak eklemek istiyorsak insertAdjacentHTML()
 function renderPerson(kisi) {
   const HTML = `
     <div class="col-sm-4">
