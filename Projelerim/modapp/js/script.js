@@ -48,22 +48,24 @@ function sesOlayları() {
       const kartSesi = kartElemani.querySelector('audio')
 
       if (kartSesi.paused) {
+        //eğer duruyorsa
         kartSesi.play()
         kartElemani.classList.add('aktif')
         calanModlar.push(kartElemani.dataset.mod)
       } else {
-        kartSesi.pause()
+        kartSesi.pause() //eğer çalıyorsa
         kartElemani.classList.remove('aktif')
         const modIndex = calanModlar.findIndex(
           (mod) => mod === kartElemani.dataset.mod
         )
-        calanModlar.splice(modIndex, 1)
+        calanModlar.splice(modIndex, 1) //indexi eşit olanı çalanlardan kaldır
       }
       renderBilgi()
     })
   })
 }
 
+//ÇALANLARI GOSTEREN FONKSIYON
 function renderBilgi() {
   const modlar = calanModlar.join(', ')
   bilgiEleman.innerHTML = `
@@ -71,9 +73,8 @@ function renderBilgi() {
   `
 }
 
-renderBilgi()
 renderKartlar()
-
+renderBilgi()
 
 //yontem2
 /* const sesElemanlari = document.querySelectorAll("audio")
