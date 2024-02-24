@@ -28,7 +28,6 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  visibility: visible;
 }
 
 .card div p {
@@ -44,17 +43,22 @@ body {
 
 #clearAllBtn {
   width: 100%;
-  padding: 0.9rem 0.5rem;
+  padding: 0.9rem 0.3rem;
   border: none;
   border-radius: 5px;
   background-color: palevioletred;
   color: #fff;
   letter-spacing: 0.1rem;
-  margin: 1rem 0;
+  margin: 1rem auto;
 }
 
 #clearAllBtn:hover {
   opacity: 0.5;
   cursor: pointer;
   color: black;
+}
+
+.title {
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
 }
