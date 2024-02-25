@@ -12,8 +12,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 const handleClick = () => {
   const cards = document.querySelectorAll('.card')
   const title = document.querySelector('.title')
+  const clearBtn = document.querySelector("#clearAllBtn")
   cards.forEach((item) => (item.style.visibility = 'hidden'))
   title.innerText = '0 Birthdays Today'
+  clearBtn.style.visibility = "hidden"
 }
 root.render(
   <>
