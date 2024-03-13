@@ -1,5 +1,7 @@
 import React from 'react'
+import './App.css'
 import Reviews from './projects/3-Review/Reviews'
+import Loading from './components/Loading'
 
 function App() {
   let App = {
