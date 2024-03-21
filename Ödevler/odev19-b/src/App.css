@@ -40,6 +40,16 @@ main {
   justify-content: center;
 }
 
+.overScor {
+  width: 13rem;
+  background-color: #333;
+  padding: 1rem;
+  border-radius: 20px;
+  letter-spacing: 0.10rem;
+  font-size: 2rem;
+  margin: auto;
+}
+
 @media (max-width: 991px) {
   .game-container {
     overflow: hidden;

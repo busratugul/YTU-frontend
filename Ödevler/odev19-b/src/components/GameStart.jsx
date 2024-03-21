@@ -21,7 +21,7 @@ function GameStart({ name, setName, startGame, warning }) {
           style={{ letterSpacing: '0.07rem' }}
           onChange={(e) => setName(e.target.value)}
         />
-        <button className="btn btn-light text-dark fs-3" onClick={startGame}>
+        <button className="btn btn-light text-dark fs-3" onClick={() => startGame()}>
           Hadi
         </button>
       </div>

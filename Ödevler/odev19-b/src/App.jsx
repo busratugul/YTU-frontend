@@ -14,9 +14,8 @@ function App() {
   //GamePage states
   const [count, setCount] = useState(3)
   const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [selectWord, setSelectWord] = useState('Başla')
+  const [selectWord, setSelectWord] = useState('BAŞLA')
   const [hearth, setHearth] = useState(3)
-  const [haveHearth, setHaveHearth] = useState(false)
   const [timer, setTimer] = useState(null)
   const [scor, setScor] = useState(0)
 
@@ -35,7 +34,7 @@ function App() {
     const height = 300
     const randomX = Math.floor(Math.random() * width)
     const randomY = Math.floor(Math.random() * height)
-    console.log(randomX, randomY)
+    //console.log(randomX, randomY)
     setPosition({ x: randomX, y: randomY })
   }
 
@@ -46,24 +45,29 @@ function App() {
     setSelectWord(selectedWord)
   }
 
-  //Can kontolü ve skor hesaplaması
+  //CAN KONTROLU VE SCOR HESAPLANMASI
   function decreaseHearth() {
+    console.log('decrease heart çalışıyor')
     clearInterval(timer)
     console.log(timer)
     getRandomPosition()
     selectedWord()
-    setScor((prev) => prev + 10)
+    if (selectWord !== 'BAŞLA') {
+      setScor((prev) => prev + 10)
+    }
+
     setTimer(
       setInterval(() => {
         getRandomPosition()
         selectedWord()
-        setScor((prev) => prev - 10)
+        scor !== 0 && setScor((prev) => prev - 10)
         setHearth((prev) => prev - 1)
       }, 2000)
     )
   }
 
   //RENDER EKRANI AYARLAMA
+  //oyun başlamışsa ve oyuncunun canı varsa
   if (start) {
     return (
       <main className="container">
@@ -78,11 +82,12 @@ function App() {
           hearth={hearth}
           decreaseHearth={decreaseHearth}
           scor={scor}
+          setStart={setStart}
         />
       </main>
     )
   }
-
+  //oyun başlamamışsa giriş ekranı
   if (!start) {
     return (
       <main className="container">
