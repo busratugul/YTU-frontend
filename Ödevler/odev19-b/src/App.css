@@ -45,9 +45,15 @@ main {
   background-color: #333;
   padding: 1rem;
   border-radius: 20px;
-  letter-spacing: 0.10rem;
+  letter-spacing: 0.1rem;
   font-size: 2rem;
   margin: auto;
+}
+
+.overContainer {
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
 }
 
 @media (max-width: 991px) {

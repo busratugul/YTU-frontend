@@ -13,7 +13,7 @@ function App() {
 
   //GamePage states
   const [count, setCount] = useState(3)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [position, setPosition] = useState({ x: '50px', y: '50px' })
   const [selectWord, setSelectWord] = useState('BAŞLA')
   const [hearth, setHearth] = useState(3)
   const [timer, setTimer] = useState(null)
@@ -49,7 +49,6 @@ function App() {
   function decreaseHearth() {
     console.log('decrease heart çalışıyor')
     clearInterval(timer)
-    console.log(timer)
     getRandomPosition()
     selectedWord()
     if (selectWord !== 'BAŞLA') {

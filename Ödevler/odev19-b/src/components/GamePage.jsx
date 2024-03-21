@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { IoIosHeartHalf } from 'react-icons/io'
 import GameOver from './GameOver'
 
@@ -11,9 +11,9 @@ function GamePage({
   hearth,
   decreaseHearth,
   scor,
-  setStart
+  setStart,
 }) {
-
+  
   //Geri Sayım Sayacı
   useEffect(() => {
     const countInterval = setInterval(() => {
@@ -72,8 +72,8 @@ function GamePage({
                     className="btn btn-dark px-5 py-2 fs-5"
                     style={{
                       position: 'absolute',
-                      top: position.x,
-                      left: position.y,
+                      left: position.x,
+                      top: position.y,
                       letterSpacing: '0.1rem',
                     }}
                     onClick={decreaseHearth}
@@ -100,7 +100,15 @@ function GamePage({
             justifyContent: 'center',
           }}
         >
-          <GameOver scor={scor} name={name} setStart={setStart}  />
+          <GameOver scor={scor} name={name} />
+          <div style={{ height: '20rem' }}>
+            <button
+              className="mb-5 btn btn-success"
+              style={{ letterSpacing: '0.1rem' }}
+            >
+              Tekrar Oyna
+            </button>
+          </div>
         </main>
       )}
     </>
