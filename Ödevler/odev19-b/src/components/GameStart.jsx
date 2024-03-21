@@ -1,6 +1,6 @@
 import React from 'react'
 
-function GameStart({ name, setName, startGame, uyari }) {
+function GameStart({ name, setName, startGame, warning }) {
   return (
     <div className="text-center mt-4">
       <h3 className="mt-5 fs-1 text-light">Hoşgeldin {name}</h3>
@@ -25,7 +25,7 @@ function GameStart({ name, setName, startGame, uyari }) {
           Hadi
         </button>
       </div>
-      <div className="text-warning fs-4 mb-3 d-block"> {uyari} </div>
+      <div className="text-warning fs-4 mb-3 d-block"> {warning} </div>
     </div>
   )
 }

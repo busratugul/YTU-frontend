@@ -18,6 +18,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 body::before {
@@ -37,4 +38,11 @@ main {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+}
+
+@media (max-width: 991px) {
+  .game-container {
+    overflow: hidden;
+    width: 100% !important;
+  }
 }
