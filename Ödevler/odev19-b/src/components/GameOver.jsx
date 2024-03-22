@@ -14,7 +14,7 @@ function GameOver({ scor, name }) {
       </div>
     )
   }
-  if (scor <= 150) {
+  else if (scor <= 150 && scor > 50) {
     return (
       <div className='overContainer'>
         <h3 className="overScor">Skor: {scor}</h3>
@@ -25,9 +25,7 @@ function GameOver({ scor, name }) {
         </p>
       </div>
     )
-  }
-
-  if (scor <= 350) {
+  }else {
     return (
       <div className='overContainer'>
         <h3 className="overScor">Skor: {scor}</h3>

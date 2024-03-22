@@ -1,51 +1,35 @@
 import React, { useEffect } from 'react'
-import { IoIosHeartHalf } from 'react-icons/io'
+import { FaHeart } from 'react-icons/fa'
 import GameOver from './GameOver'
 
 function GamePage({
-  count,
-  setCount,
-  position,
+  position1,
+  position2,
   selectWord,
   name,
-  hearth,
-  decreaseHearth,
+  heart,
+  decreaseHeart,
   scor,
-  setStart,
+  start,
+  timer,
+  over,
 }) {
-  
-  //Geri Sayım Sayacı
-  useEffect(() => {
-    const countInterval = setInterval(() => {
-      if (count > 0) {
-        setCount((prev) => prev - 1)
-      } else {
-        clearInterval(countInterval)
-        console.log('clear')
-        setStart(true)
-      }
-    }, 1000)
-    return () => clearInterval(countInterval)
-  }, [count])
 
   return (
     <>
-      {hearth > 0 ? (
+      {heart > 0 ? (
         <div
           className="w-100 h-100 text-center d-flex"
           style={{ flexDirection: 'column' }}
         >
           <div
-            className="w-100 d-flex text-danger pt-2"
+            className="w-100 d-flex text-danger pt-2 mt-5"
             style={{ justifyContent: 'space-between' }}
           >
             <div>
-              <p className="">
-                <IoIosHeartHalf
-                  className="ms-2"
-                  style={{ fontSize: '2.5rem' }}
-                />
-                <span className="fs-3">{hearth}</span>
+              <p>
+                <FaHeart className="ms-2" style={{ fontSize: '2.5rem' }} />
+                <span className="fs-3">{heart}</span>
               </p>
             </div>
             <div>
@@ -55,12 +39,20 @@ function GamePage({
             </div>
           </div>
           <div
-            className="m-auto bg-light rounded shadow game-container"
-            style={{ width: '800px', height: '700px' }}
+            className="mx-auto bg-light rounded shadow game-container mt-2"
+            style={{
+              width: '800px',
+              height: selectWord === 'BAŞLA' ? '300px' : '700px',
+              opacity: selectWord === 'BAŞLA' && '0.8 ',
+            }}
           >
-            {count === 0 ? (
-              <div className="p-5">
-                <h1 style={{ fontSize: '5rem' }}>{selectWord}</h1>
+            {start && (
+              <div className="p-5 text-center">
+                <h1 style={{ fontSize: '3rem' }}>
+                  {selectWord === 'BAŞLA'
+                    ? 'Deve ise deveye, cüce ise cüceye en kısa sürede bas. Unutma pratik olan kazanır.'
+                    : selectWord}
+                </h1>
                 <div
                   style={{
                     width: '600px',
@@ -69,24 +61,35 @@ function GamePage({
                   }}
                 >
                   <button
-                    className="btn btn-dark px-5 py-2 fs-5"
+                    className={`btn py-2 fs-5  text-light ${
+                      selectWord === 'BAŞLA' ? 'bg-success' : 'bg-dark'
+                    }`}
                     style={{
                       position: 'absolute',
-                      left: position.x,
-                      top: position.y,
+                      left: position1.x,
+                      top: position1.y,
                       letterSpacing: '0.1rem',
                     }}
-                    onClick={decreaseHearth}
+                    onClick={decreaseHeart}
                   >
-                    {selectWord}
+                    {selectWord === 'BAŞLA' ? 'BAŞLA' : 'DEVE'}
                   </button>
+
+                  {selectWord !== 'BAŞLA' && (
+                    <button
+                      className={'btn px-5 py-2 fs-5 text-light bg-dark'}
+                      style={{
+                        position: 'absolute',
+                        left: position2.x,
+                        top: position2.y,
+                        letterSpacing: '0.1rem',
+                      }}
+                      onClick={decreaseHeart}
+                    >
+                      CÜCE
+                    </button>
+                  )}
                 </div>
-              </div>
-            ) : (
-              <div className="text-center h-100 w-100 d-flex">
-                <p className="text-dark m-auto" style={{ fontSize: '7rem' }}>
-                  {count}
-                </p>
               </div>
             )}
           </div>

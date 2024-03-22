@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import GameStart from './components/GameStart'
 import GamePage from './components/GamePage'
@@ -12,12 +12,13 @@ function App() {
   const [warning, setWarning] = useState('')
 
   //GamePage states
-  const [count, setCount] = useState(3)
-  const [position, setPosition] = useState({ x: '50px', y: '50px' })
+  const [position1, setPosition1] = useState({ x: '0', y: '0' })
+  const [position2, setPosition2] = useState({ x: '0', y: '0' })
   const [selectWord, setSelectWord] = useState('BAŞLA')
-  const [hearth, setHearth] = useState(3)
-  const [timer, setTimer] = useState(null)
+  const [heart, setHeart] = useState(3)
+  const [timer, setTimer] = useState()
   const [scor, setScor] = useState(0)
+  const [over, setOver] = useState(false)
 
   //OYUNUN BAŞLAMASI İÇİN GEREKLİ KONTROLLERİN YAPILMASI
   function startGame() {
@@ -32,10 +33,31 @@ function App() {
   function getRandomPosition() {
     const width = 400
     const height = 300
-    const randomX = Math.floor(Math.random() * width)
-    const randomY = Math.floor(Math.random() * height)
-    //console.log(randomX, randomY)
-    setPosition({ x: randomX, y: randomY })
+
+    const minDistance = 250 // İki buton arasındaki minimum mesafe
+
+    let randomX1, randomY1, randomX2, randomY2
+
+    // DEVE BUTONU
+    randomX1 = Math.floor(Math.random() * width)
+    randomY1 = Math.floor(Math.random() * height)
+
+    // CÜCE BUTONU
+    randomX2 = Math.floor(Math.random() * width)
+    randomY2 = Math.floor(Math.random() * height)
+
+    // butonlar çakışıyor mu kontrolü
+    switch (true) {
+      case Math.abs(randomX2 - randomX1) < minDistance:
+      case Math.abs(randomY2 - randomY1) < minDistance:
+        // Çakışma varsa, yeni pozisyon ayarla
+        return getRandomPosition()
+      default:
+        // Çakışma yoksa, pozisyonları ayarla
+        setPosition1({ x: randomX1, y: randomY1 })
+        setPosition2({ x: randomX2, y: randomY2 })
+        break
+    }
   }
 
   //RANDOM KELİME SEÇME
@@ -46,23 +68,26 @@ function App() {
   }
 
   //CAN KONTROLU VE SCOR HESAPLANMASI
-  function decreaseHearth() {
-    console.log('decrease heart çalışıyor')
-    clearInterval(timer)
-    getRandomPosition()
-    selectedWord()
+  function decreaseHeart() {
+    console.log('decrease heart çalışıyor');
+    getRandomPosition();
+    selectedWord();
+    
     if (selectWord !== 'BAŞLA') {
-      setScor((prev) => prev + 10)
+      setScor((prev) => prev + 10);
     }
-
-    setTimer(
-      setInterval(() => {
-        getRandomPosition()
-        selectedWord()
-        scor !== 0 && setScor((prev) => prev - 10)
-        setHearth((prev) => prev - 1)
-      }, 2000)
-    )
+  
+    setTimeout(() => {
+      if (scor > 0 && heart > 0 && !over) {
+        setScor((prev) => prev - 10);
+        setHeart((prev) => prev - 1);
+        decreaseHeart(); // Bir sonraki adımı beklemek için decreaseHeart fonksiyonunu tekrar çağırın
+      }
+      if (over || heart === 0) {
+        setOver(true);
+        console.log('oyun bitti');
+      }
+    }, 2000);
   }
 
   //RENDER EKRANI AYARLAMA
@@ -71,17 +96,16 @@ function App() {
     return (
       <main className="container">
         <GamePage
-          count={count}
-          setCount={setCount}
-          getRandomPosition={getRandomPosition}
-          position={position}
-          selectedWord={selectedWord}
+          position1={position1}
+          position2={position2}
           selectWord={selectWord}
           name={firstname}
-          hearth={hearth}
-          decreaseHearth={decreaseHearth}
+          heart={heart}
+          decreaseHeart={decreaseHeart}
           scor={scor}
-          setStart={setStart}
+          start={start}
+          timer={timer}
+          over={over}
         />
       </main>
     )
