@@ -1,8 +1,9 @@
 import React from 'react'
+import ScorHigh from './ScorHigh'
 
 function GameStart({ name, setName, loginControl, warning }) {
   return (
-    <div className="text-center mt-4">
+    <div className="text-center mt-4 h-100 relative">
       <h3 className="mt-5 fs-1 text-light">Hoşgeldin {name}</h3>
       <p className="fs-5 mb-5 text-light" style={{ letterSpacing: '0.07rem' }}>
         Deve ve Cüce oyunu, eğlenceli bir refleks oyunudur! Oyunda, ekranda
@@ -26,6 +27,9 @@ function GameStart({ name, setName, loginControl, warning }) {
         </button>
       </div>
       <div className="text-warning fs-4 mb-3 d-block"> {warning} </div>
+      <div>
+        <ScorHigh />
+      </div>
     </div>
   )
 }

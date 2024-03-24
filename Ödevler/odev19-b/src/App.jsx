@@ -28,7 +28,6 @@ function App() {
   const [disabled, setDisabled] = useState(false)
 
   //FUNCTIONS
-  //oyuncuyu hafızaya alma
   function loginControl() {
     if (firstname.length >= 3) {
       setIsName(true)
@@ -38,10 +37,6 @@ function App() {
       setWarning('İsim boş bırakılamaz :(')
     }
   }
-
-  useEffect(() => {
-    localStorage.setItem('USERNAME', firstname)
-  }, [firstname])
 
   //butonlar için rastgele konum ayarlama
   function getRandomPosition() {
