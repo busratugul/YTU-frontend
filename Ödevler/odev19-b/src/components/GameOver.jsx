@@ -2,7 +2,7 @@ import React from 'react'
 
 function GameOver({ scor, name }) {
 
-  if (scor <= 50) {
+  if (scor <= 10) {
     return (
       <div className="overContainer">
         <h3 className="overScor">Skor: {scor}</h3>
@@ -14,7 +14,7 @@ function GameOver({ scor, name }) {
         </p>
       </div>
     )
-  } else if (scor <= 150 && scor > 50) {
+  } else if (scor <= 20 && scor > 50) {
     return (
       <div className="overContainer">
         <h3 className="overScor">Skor: {scor}</h3>

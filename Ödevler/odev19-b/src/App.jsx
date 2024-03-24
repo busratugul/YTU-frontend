@@ -28,6 +28,7 @@ function App() {
   const [disabled, setDisabled] = useState(false)
 
   //FUNCTIONS
+  //oyuncuyu hafızaya alma
   function loginControl() {
     if (firstname.length >= 3) {
       setIsName(true)
@@ -37,6 +38,10 @@ function App() {
       setWarning('İsim boş bırakılamaz :(')
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem('USERNAME', firstname)
+  }, [firstname])
 
   //butonlar için rastgele konum ayarlama
   function getRandomPosition() {
@@ -93,25 +98,24 @@ function App() {
     const startInterval = setInterval(() => {
       generateRandomWord()
       getRandomPosition()
-      if (isClicked) {
-        setIsClicked(false)
-        setDisabled(false)
-      } else if (!isClicked && start) {
-        setHeart((prev) => prev - 1)
-        setDisabled(false)
-      }
+      let clickTimer = setTimeout(() => {
+        if (!isClicked && start) {
+          setHeart((prev) => prev - 1)
+        }
+      }, 2000)
+      setDisabled(false)
+      setIsClicked(false)
+
+      return () => clearTimeout(clickTimer)
     }, 2000)
 
-    return () => {
-      clearInterval(startInterval)
-    }
-  }, [start])
+    return () => clearInterval(startInterval)
+  }, [isClicked, start])
 
   //yeniden oyna aktif
   function refreshPage() {
-    setScor(0)
-    setHeart(3)
     window.location.reload()
+    setStart(false)
   }
 
   //RENDER EKRANI AYARLAMA
