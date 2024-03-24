@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FaHeart } from 'react-icons/fa'
 import GameOver from './GameOver'
 import PrevGame from './PrevGame'
@@ -16,7 +16,6 @@ function GamePage({
   correctBtn,
   wrongBtn,
   refreshPage,
-  isClicked,
   disabled
 }) {
 

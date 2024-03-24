@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import GameStart from './components/GameLogin'
 import GamePage from './components/GamePage'
-import GameOver from './components/GameOver'
 
 const wordArr = ['CÜCE', 'DEVE']
 
@@ -19,8 +18,6 @@ function App() {
   const [position2, setPosition2] = useState({ x: '0', y: '0' })
   //random seçilen kelime
   const [randomWord, setRandomWord] = useState('')
-  //seçilen buton deve veya cüce
-  const [selectWord, setSelectWord] = useState()
   //can kontrolü
   const [heart, setHeart] = useState(3)
   //scor kontrolü
@@ -73,15 +70,17 @@ function App() {
     const newWord = wordArr[randomIdx]
     setRandomWord(newWord)
   }
-
+  //random kelime ile eşleşen butona basıldıysa
   function correctBtn() {
+    setIsClicked(true)
     setDisabled(true)
     setScor((prev) => prev + 1)
   }
 
+  //random kelime ile eşleşen butona basılmadıysa
   function wrongBtn() {
-    setDisabled(true)
     setIsClicked(true)
+    setDisabled(true)
 
     if (scor > 0) {
       setScor((prev) => prev - 1)
@@ -89,12 +88,18 @@ function App() {
     setHeart((prev) => prev - 1)
   }
 
+  //Oyunu başlatıyor
   useEffect(() => {
     const startInterval = setInterval(() => {
-      setIsClicked(false)
-      setDisabled(false)
       generateRandomWord()
       getRandomPosition()
+      if (isClicked) {
+        setIsClicked(false)
+        setDisabled(false)
+      } else if (!isClicked && start) {
+        setHeart((prev) => prev - 1)
+        setDisabled(false)
+      }
     }, 2000)
 
     return () => {
@@ -102,8 +107,10 @@ function App() {
     }
   }, [start])
 
+  //yeniden oyna aktif
   function refreshPage() {
-    setScor(0) // Skoru sıfırla
+    setScor(0)
+    setHeart(3)
     window.location.reload()
   }
 
@@ -125,7 +132,6 @@ function App() {
           correctBtn={correctBtn}
           wrongBtn={wrongBtn}
           refreshPage={refreshPage}
-          isClicked={isClicked}
           disabled={disabled}
         />
       </main>
