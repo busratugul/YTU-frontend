@@ -1,6 +1,6 @@
 import React from 'react'
 
-function GameStart({ name, setName, startGame, warning }) {
+function GameStart({ name, setName, loginControl, warning }) {
   return (
     <div className="text-center mt-4">
       <h3 className="mt-5 fs-1 text-light">Hoşgeldin {name}</h3>
@@ -21,7 +21,7 @@ function GameStart({ name, setName, startGame, warning }) {
           style={{ letterSpacing: '0.07rem' }}
           onChange={(e) => setName(e.target.value)}
         />
-        <button className="btn btn-light text-dark fs-3" onClick={() => startGame()}>
+        <button className="btn btn-light text-dark fs-3" onClick={loginControl}>
           Hadi
         </button>
       </div>

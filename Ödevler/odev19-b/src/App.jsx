@@ -1,51 +1,58 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
-import GameStart from './components/GameStart'
+import GameStart from './components/GameLogin'
 import GamePage from './components/GamePage'
+import GameOver from './components/GameOver'
 
-const gameArr = ['DEVE', 'CÜCE']
+const wordArr = ['CÜCE', 'DEVE']
 
 function App() {
-  //GameStart states
-  const [start, setStart] = useState(false)
+  //STATES
+  //login kontrolleri
   const [firstname, setFirstname] = useState('')
+  const [isName, setIsName] = useState(false)
   const [warning, setWarning] = useState('')
-
-  //GamePage states
+  //başla butonu kontrolü
+  const [start, setStart] = useState(false)
+  //random buton konumları ayarlayan stateler
   const [position1, setPosition1] = useState({ x: '0', y: '0' })
   const [position2, setPosition2] = useState({ x: '0', y: '0' })
-  const [selectWord, setSelectWord] = useState('BAŞLA')
+  //random seçilen kelime
+  const [randomWord, setRandomWord] = useState('')
+  //seçilen buton deve veya cüce
+  const [selectWord, setSelectWord] = useState()
+  //can kontrolü
   const [heart, setHeart] = useState(3)
-  const [timer, setTimer] = useState()
+  //scor kontrolü
   const [scor, setScor] = useState(0)
-  const [over, setOver] = useState(false)
+  //click kontrol
+  const [isClicked, setIsClicked] = useState(false)
+  //tıklamadan sonra işlev dışı olma kontrolü
+  const [disabled, setDisabled] = useState(false)
 
-  //OYUNUN BAŞLAMASI İÇİN GEREKLİ KONTROLLERİN YAPILMASI
-  function startGame() {
+  //FUNCTIONS
+  function loginControl() {
     if (firstname.length >= 3) {
-      setStart(true)
+      setIsName(true)
+    } else if (firstname.length < 3 && firstname) {
+      setWarning('İsim en az 3 karakterli olmalı !!')
     } else {
       setWarning('İsim boş bırakılamaz :(')
     }
   }
 
-  //DEVE VE CÜCE RANDOM KONUM AYARLAMA
+  //butonlar için rastgele konum ayarlama
   function getRandomPosition() {
     const width = 400
     const height = 300
-
     const minDistance = 250 // İki buton arasındaki minimum mesafe
-
     let randomX1, randomY1, randomX2, randomY2
-
     // DEVE BUTONU
     randomX1 = Math.floor(Math.random() * width)
     randomY1 = Math.floor(Math.random() * height)
-
     // CÜCE BUTONU
     randomX2 = Math.floor(Math.random() * width)
     randomY2 = Math.floor(Math.random() * height)
-
     // butonlar çakışıyor mu kontrolü
     switch (true) {
       case Math.abs(randomX2 - randomX1) < minDistance:
@@ -60,64 +67,78 @@ function App() {
     }
   }
 
-  //RANDOM KELİME SEÇME
-  function selectedWord() {
-    const randomIdx = Math.floor(Math.random() * gameArr.length)
-    const selectedWord = gameArr[randomIdx]
-    setSelectWord(selectedWord)
+  //random kelime seçme
+  function generateRandomWord() {
+    const randomIdx = Math.floor(Math.random() * wordArr.length)
+    const newWord = wordArr[randomIdx]
+    setRandomWord(newWord)
   }
 
-  //CAN KONTROLU VE SCOR HESAPLANMASI
-  function decreaseHeart() {
-    console.log('decrease heart çalışıyor');
-    getRandomPosition();
-    selectedWord();
-    
-    if (selectWord !== 'BAŞLA') {
-      setScor((prev) => prev + 10);
+  function correctBtn() {
+    setDisabled(true)
+    setScor((prev) => prev + 1)
+  }
+
+  function wrongBtn() {
+    setDisabled(true)
+    setIsClicked(true)
+
+    if (scor > 0) {
+      setScor((prev) => prev - 1)
     }
-  
-    setTimeout(() => {
-      if (scor > 0 && heart > 0 && !over) {
-        setScor((prev) => prev - 10);
-        setHeart((prev) => prev - 1);
-        decreaseHeart(); // Bir sonraki adımı beklemek için decreaseHeart fonksiyonunu tekrar çağırın
-      }
-      if (over || heart === 0) {
-        setOver(true);
-        console.log('oyun bitti');
-      }
-    }, 2000);
+    setHeart((prev) => prev - 1)
+  }
+
+  useEffect(() => {
+    const startInterval = setInterval(() => {
+      setIsClicked(false)
+      setDisabled(false)
+      generateRandomWord()
+      getRandomPosition()
+    }, 2000)
+
+    return () => {
+      clearInterval(startInterval)
+    }
+  }, [start])
+
+  function refreshPage() {
+    setScor(0) // Skoru sıfırla
+    window.location.reload()
   }
 
   //RENDER EKRANI AYARLAMA
   //oyun başlamışsa ve oyuncunun canı varsa
-  if (start) {
+  if (isName) {
     return (
       <main className="container">
         <GamePage
+          isName={isName}
           position1={position1}
           position2={position2}
-          selectWord={selectWord}
+          randomWord={randomWord}
           name={firstname}
           heart={heart}
-          decreaseHeart={decreaseHeart}
           scor={scor}
           start={start}
-          timer={timer}
-          over={over}
+          setStart={setStart}
+          correctBtn={correctBtn}
+          wrongBtn={wrongBtn}
+          refreshPage={refreshPage}
+          isClicked={isClicked}
+          disabled={disabled}
         />
       </main>
     )
   }
-  //oyun başlamamışsa giriş ekranı
+  //oyuncu giriş ekranı
   if (!start) {
     return (
       <main className="container">
         <GameStart
           name={firstname}
           setName={setFirstname}
-          startGame={startGame}
+          loginControl={loginControl}
           warning={warning}
         />
       </main>
