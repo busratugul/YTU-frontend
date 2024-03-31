@@ -1,13 +1,22 @@
 import React from 'react'
 import useResize from '../hooks/useResize'
+import useBaglanti from '../hooks/useBaglanti'
 
 function Ekran() {
   const ekranBilgi = useResize()
+  const baglantiVarMi = useBaglanti()
 
   if (ekranBilgi[0] < 700)
     return (
       <p style={{ color: 'red' }}>
         Uygulamayı en az 500px genişlikte görüntüleyebilirsiniz.
+      </p>
+    )
+
+  if (!baglantiVarMi)
+    return (
+      <p style={{ color: 'red' }}>
+        İnternet Bağlantısı kesildi. Uygulamayı Yeniden Başlatın.
       </p>
     )
   return (

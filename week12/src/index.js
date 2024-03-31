@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import UMemo from './UMemo'
-import CustomHooks from './hooks/CustomHooks'
+import CustomHooks from './components/CustomHooks'
 import Sayac from './Sayac'
 import Ekran from './components/Ekran'
 
