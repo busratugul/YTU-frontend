@@ -1,9 +1,12 @@
 import React, { memo } from 'react'
 
-function C1({veri}) {
+function C1({veri, f1}) {
     console.log("c1 tekrar render oluyor");
   return (
-    <div>Gelen Veri: {veri}</div>
+    <div>Gelen Veri: {veri}
+    <hr />
+    <button onClick={() => f1("c1den gelen uyari")}>Uyari Goster</button>
+    </div>
   )
 }
 
