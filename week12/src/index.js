@@ -4,10 +4,12 @@ import App from './App'
 import UMemo from './UMemo'
 import CustomHooks from './hooks/CustomHooks'
 import Sayac from './Sayac'
+import Ekran from './components/Ekran'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   /*   <App /> */
   /* <CustomHooks/> */
-  <Sayac />
+ /*  <Sayac /> */
+ <Ekran/>
 )
