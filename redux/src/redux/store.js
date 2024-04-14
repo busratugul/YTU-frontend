@@ -3,6 +3,10 @@ import todoReducer from './todoSlice'
 
 export default configureStore({
     reducer: {
-        todos: todoReducer
-    }
+        tds: todoReducer
+    },
+    middleware:(getDefaultMiddleWare) => 
+    getDefaultMiddleWare({
+        serializableCheck: false
+    })
 })

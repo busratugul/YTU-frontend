@@ -1,7 +1,10 @@
-import React from 'react';
+import {useSelector} from 'react-redux'
+
 
 const TotalCompleteItems = () => {
-	return <h4 className='mt-3'>Total Complete Items: 5</h4>;
+	const isler = useSelector(state => state.tds)
+	const tamamlananSayisi = isler.filter((is) => is.completed === true)
+	return <h4 className='mt-3'>Total Complete Items: {tamamlananSayisi.length}</h4>;
 };
 
 export default TotalCompleteItems;

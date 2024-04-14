@@ -8,9 +8,11 @@ const AddTodoForm = () => {
   const vekilFonksiyon = useDispatch()
 
   const onSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault() //form gönderimi tarayıcıyı yeniden başlatmasın
+
     if (value) {
-      vekilFonksiyon( addTodo({ title: value }))
+      vekilFonksiyon( addTodo({ title: value })) //payload
+      setValue("")
     }
   }
 
