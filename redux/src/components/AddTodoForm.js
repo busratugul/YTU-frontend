@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addTodo } from '../redux/todoSlice'
+import { sirala } from '../redux/todoSlice'
 
 const AddTodoForm = () => {
   const [value, setValue] = useState('')
 
   const vekilFonksiyon = useDispatch()
+  const todoArr = useSelector(state => state.tds)
 
   const onSubmit = (event) => {
     event.preventDefault() //form gönderimi tarayıcıyı yeniden başlatmasın
@@ -15,6 +17,11 @@ const AddTodoForm = () => {
       setValue("")
     }
   }
+
+  function siraliListe() {
+    vekilFonksiyon(sirala())
+  }
+
 
   return (
     <form onSubmit={onSubmit} className="form-inline mt-3 mb-3">
@@ -30,6 +37,7 @@ const AddTodoForm = () => {
       <button type="submit" className="btn btn-primary mb-2">
         Submit
       </button>
+      <button onClick={siraliListe}>Sırala</button>
     </form>
   )
 }

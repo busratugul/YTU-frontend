@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { tamamlandiAcKapa, isSil } from '../redux/todoSlice'
+import { saveTodo } from '../redux/undoSlice'
 
 const TodoItem = ({ title, id, completed }) => {
   const vekilFonksiyon = useDispatch()
@@ -9,7 +10,8 @@ const TodoItem = ({ title, id, completed }) => {
   }
 
   function silmeIslemi() {
-	vekilFonksiyon(isSil({id:id}))
+    vekilFonksiyon(saveTodo({ title, completed }))
+    vekilFonksiyon(isSil({ id: id }))
   }
 
   return (
@@ -26,7 +28,9 @@ const TodoItem = ({ title, id, completed }) => {
             {title}
           </label>
         </span>
-        <button className="btn btn-danger" onClick={silmeIslemi}>Delete</button>
+        <button className="btn btn-danger" onClick={silmeIslemi}>
+          Delete
+        </button>
       </div>
     </li>
   )

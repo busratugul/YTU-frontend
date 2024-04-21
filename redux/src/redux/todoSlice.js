@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { v4 as uuidv4 } from 'uuid'
 
 export const todoSlice = createSlice({
   name: 'todos',
@@ -12,9 +13,9 @@ export const todoSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const todo = {
-        id: new Date(),
+        id: uuidv4(),
         title: action.payload.title,
-        completed: false,
+        completed: action.payload.completed ? action.payload.completed : false,
       }
       state.push(todo)
     },
@@ -26,11 +27,15 @@ export const todoSlice = createSlice({
       const yeniState = state.filter(
         (eleman) => eleman.id !== action.payload.id
       )
-	  return yeniState
+      return yeniState
+    },
+    sirala: (state, action) => {
+      const yeniArr = state.sort((onceki, sonraki) => onceki.title.localeCompare(sonraki.title, 'tr'))
+      return yeniArr
     },
   },
 })
 
-export const { addTodo, tamamlandiAcKapa, isSil } = todoSlice.actions
+export const { addTodo, tamamlandiAcKapa, isSil, sirala } = todoSlice.actions
 
 export default todoSlice.reducer
